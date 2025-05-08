@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyspace - Alexa Chomat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            max-width: 1200px;
+            margin: 140px auto 60px;
+            padding: 0 60px;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .hero-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-top: 28px;
+        }
+
+        .hero-title {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .hero-description {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: black;
+        }
+
+        /* Photo Grid */
+        .photo-grid-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 60px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .grid-item {
+            position: relative;
+        }
+
+        .grid-item img, 
+        .grid-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 28px;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 16px;
+            color: black;
+            text-decoration: none;
+            width: fit-content; /* Limit width to content */
+        }
+
+        .back-button-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            color: #52f625;
+        }
+
+        .back-arrow {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+        }
+
+        .back-arrow svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                margin-top: 100px;
+                padding: 0 20px;
+                gap: 30px;
+            }
+
+            .hero-image {
+                max-width: 100%;
+            }
+
+            .photo-grid-container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Action link styling */
+        .action-link {
+            display: inline-block;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 18px;
+            color: black;
+            text-decoration: none;
+            margin-top: 20px;
+            padding: 0 0 1px 0;
+            background-color: transparent;
+            border-bottom: 1px solid black;
+            transition: all 0.15s ease;
+        }
+        
+        .action-link:hover {
+            color: #52f625;
+            border-bottom-color: #52f625;
+        }
+        
+        .action-link .arrow {
+            display: inline-block;
+            margin-left: 4px;
+            color: black;
+            font-size: 16px;
+            transition: all 0.15s ease;
+        }
+        
+        .action-link:hover .arrow {
+            color: #52f625;
+            transform: translateX(3px);
+        }
+
+        /* Project tags styling */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-tags span {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            background-color: black;
+            color: white;
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        /* Add CSS for the grid video */
+        .grid-video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded via JavaScript -->
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-image">
+            <div class="back-button-container">
+                <a href="work.html?scroll=experiments" class="back-button">
+                    <span class="back-arrow">
+                        <svg viewBox="0 0 12 12">
+                            <path d="M8 2L4 6L8 10" />
+                        </svg>
+                    </span>
+                    <span>Experiments</span>
+                </a>
+            </div>
+            <img src="assets/turrell clock/Turrell_Clock3.gif" alt="Skyspace Clock Animation">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Skyspace</h1>
+            <div class="project-tags">
+                <span>&nbsp;Computational Design&nbsp;</span>
+                <span>&nbsp;p5.js&nbsp;</span>
+                <span>&nbsp;Code Art&nbsp;</span>
+            </div>
+            <div class="hero-description">
+                <p>A clock that moves at the speed of the sky.
+                    This piece reinterprets James Turrell's Chestnut Hill Skyspace as a digital experience, mapping the passage of time through colour.</p>
+                <p>The central box represents the sky. Its hue is determined by your device's local time—visit the website at a different time of day, and enjoy a completely different experience. The surrounding frame mimics Turrell's LED ceiling installation, cycling through gradual shifts of colour over five minutes. Just subtle enough to deceive the eye.</p>
+                <a href="https://editor.p5js.org/alexaraze/sketches/Lv_eCPOTN" target="_blank" class="action-link">See it in action <span class="arrow">→</span></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Grid -->
+    <div class="photo-grid-container">
+        <div class="photo-grid">
+            <div class="grid-item">
+                <video autoplay loop muted playsinline class="grid-video code-video">
+                    <source src="assets/turrell clock/Skyspace Code.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline class="grid-video day-video-1">
+                    <source src="assets/turrell clock/Day.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline class="grid-video day-video-2">
+                    <source src="assets/turrell clock/Day.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline class="grid-video night-video-1">
+                    <source src="assets/turrell clock/Night.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline class="grid-video night-video-2">
+                    <source src="assets/turrell clock/Night.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline class="grid-video night-video-3">
+                    <source src="assets/turrell clock/Night.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to load navigation
+        function loadNav() {
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('afterbegin', data);
+                    
+                    // Set up the hamburger menu functionality after nav is loaded
+                    const hamburger = document.querySelector('.hamburger');
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    
+                    if (hamburger && mobileMenu) {
+                        // Remove the inline onclick attribute
+                        hamburger.removeAttribute('onclick');
+                        
+                        // Add a new click event listener
+                        hamburger.addEventListener('click', function(e) {
+                            e.stopPropagation(); // Prevent document click from immediately closing
+                            mobileMenu.classList.toggle('active');
+                        });
+                        
+                        // Add click event to document to close menu when clicking outside
+                        document.addEventListener('click', function(e) {
+                            if (mobileMenu.classList.contains('active') && 
+                                !mobileMenu.contains(e.target) && 
+                                e.target !== hamburger) {
+                                mobileMenu.classList.remove('active');
+                            }
+                        });
+                        
+                        // Add click events to menu items to close menu when clicked
+                        const menuItems = mobileMenu.querySelectorAll('a');
+                        menuItems.forEach(item => {
+                            item.addEventListener('click', function() {
+                                mobileMenu.classList.remove('active');
+                            });
+                        });
+                    }
+                });
+        }
+        
+        // Function to load footer
+        function loadFooter() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('beforeend', data);
+                });
+        }
+        
+        // Load components when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNav();
+            loadFooter();
+            
+            // Update the playback rate for the Skyspace Code video to be much slower
+            const codeVideo = document.querySelector('.code-video');
+            if (codeVideo) {
+                codeVideo.addEventListener('loadedmetadata', function() {
+                    // Update playback rate to 0.3x speed (very slow)
+                    codeVideo.playbackRate = 0.3;
+                });
+            }
+            
+            // Set different start times for the Day.mp4 videos
+            const dayVideo1 = document.querySelector('.day-video-1');
+            const dayVideo2 = document.querySelector('.day-video-2');
+            
+            if (dayVideo1) {
+                dayVideo1.addEventListener('loadedmetadata', function() {
+                    // Start at the beginning (0 seconds)
+                    dayVideo1.currentTime = 0;
+                    console.log("Day video 1 set to start at beginning");
+                });
+            }
+            
+            if (dayVideo2) {
+                dayVideo2.addEventListener('loadedmetadata', function() {
+                    // Start at 1/4 of the way through the video (25%) instead of 50%
+                    dayVideo2.currentTime = dayVideo2.duration * 0.25;
+                    console.log("Day video 2 set to start at 25%: " + dayVideo2.currentTime);
+                });
+            }
+            
+            // Set playback rate for the last code video
+            const lastCodeVideo = document.querySelector('.grid-item:last-child .grid-video');
+            if (lastCodeVideo) {
+                lastCodeVideo.addEventListener('loadedmetadata', function() {
+                    // Update playback rate to 0.75x speed
+                    lastCodeVideo.playbackRate = 0.75;
+                });
+            }
+
+            // Set different start times for the Night.mp4 videos
+            const nightVideo1 = document.querySelector('.night-video-1');
+            const nightVideo2 = document.querySelector('.night-video-2');
+            const nightVideo3 = document.querySelector('.night-video-3');
+
+            if (nightVideo1) {
+                nightVideo1.addEventListener('loadedmetadata', function() {
+                    // Start at 40% of the way through the video instead of 25%
+                    nightVideo1.currentTime = nightVideo1.duration * 0.4;
+                    console.log("Night video 1 set to start at 40%: " + nightVideo1.currentTime);
+                });
+            }
+
+            if (nightVideo2) {
+                nightVideo2.addEventListener('loadedmetadata', function() {
+                    // Start at 2/3 of the way through the video (66.7%)
+                    nightVideo2.currentTime = nightVideo2.duration * (2/3);
+                    console.log("Night video 2 set to start at 66.7%: " + nightVideo2.currentTime);
+                });
+            }
+
+            if (nightVideo3) {
+                nightVideo3.addEventListener('loadedmetadata', function() {
+                    // Start at 90% of the way through the video
+                    nightVideo3.currentTime = nightVideo3.duration * 0.9;
+                    console.log("Night video 3 set to start at 90%: " + nightVideo3.currentTime);
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

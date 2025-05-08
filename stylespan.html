@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleSpan - Alexa Chomat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Back Button and Title styles */
+        .back-button-container {
+            max-width: 1200px;
+            margin: 140px auto 0;
+            padding: 0 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .project-title {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 32px;
+            color: black;
+            margin: 15px 0 0 0;
+        }
+
+        .image-container {
+            width: 100%;
+            margin: 20px 0 40px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            padding: 0 60px;
+        }
+
+        .project-tags span {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            color: white;
+            background-color: black;
+            padding: 2px 10px;
+            border-radius: 2px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: black;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 16px;
+            padding: 0;
+            width: auto;
+        }
+
+        .back-arrow {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .back-arrow svg {
+            width: 100%;
+            height: 100%;
+            stroke: black;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .back-button span:last-child {
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            color: #52f625;
+            text-decoration: underline;
+        }
+
+        .back-button:hover .back-arrow svg {
+            stroke: #52f625;
+        }
+
+        /* Project Info Grid styles */
+        .project-info-grid {
+            max-width: 1200px;
+            margin: 160px auto;
+            padding: 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px 60px;
+            color: black;
+        }
+
+        .project-overview {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 24px;
+            color: black;
+            grid-column: 1;
+            grid-row: 1;
+            align-self: start;
+            padding-right: 20px;
+        }
+
+        .info-items-container {
+            grid-column: 2;
+            grid-row: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 20px;
+        }
+
+        .context-grid {
+            max-width: 1200px;
+            margin: 160px auto;
+            padding: 0 60px;
+            display: flex;
+            gap: 40px;
+            color: black;
+        }
+
+        .context-grid + .context-grid {
+            margin-top: 0;
+        }
+
+        .context-grid + .context-grid + .context-grid {
+            margin-top: 160px;
+        }
+
+        .project-context {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 24px;
+            color: black;
+            flex: 1;
+            padding-right: 20px;
+            margin: 0;
+            line-height: 1;
+            margin-top: 0.5em;
+            text-decoration: none;
+        }
+
+        .context-body {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: black;
+            flex: 2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .info-item h3 {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            margin-bottom: 4px;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .info-item p {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: black;
+        }
+
+        .context-body a {
+            color: black;
+            text-decoration: underline;
+            transition: color 0.15s ease;
+        }
+
+        .context-body a:hover {
+            color: #52f625;
+        }
+
+        /* Mobile adjustment */
+        @media (max-width: 768px) {
+            .back-button-container {
+                margin: 100px auto 0;
+                padding: 0 20px;
+            }
+
+            .image-container {
+                height: auto;
+                overflow: visible;
+            }
+
+            .project-image {
+                height: auto;
+                object-fit: contain;
+            }
+
+            .project-tags {
+                padding: 0 20px;
+            }
+
+            .project-info-grid, .context-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+            }
+
+            .project-overview, .project-context {
+                grid-column: 1;
+                grid-row: auto;
+                padding-right: 0;
+                margin-bottom: 0;
+            }
+
+            .context-body {
+                grid-column: 1;
+                grid-row: auto;
+                margin-bottom: 0;
+            }
+
+            .info-items-container {
+                grid-column: 1;
+                grid-row: auto;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .context-grid {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .project-context, .context-body {
+                flex: none;
+            width: 100%;
+            }
+
+            /* Mobile adjustments for product assets */
+            [style*="max-width: 1200px"] {
+                padding: 0 20px !important;
+            }
+        }
+
+        .research-image {
+            margin-top: 20px !important;
+        }
+
+        .no-shadow {
+            box-shadow: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Back Button and Title -->
+    <div class="back-button-container" style="margin-top: 160px;">
+        <a href="work.html" class="back-button">
+            <span class="back-arrow">
+                <svg viewBox="0 0 12 12">
+                    <path d="M8 2L4 6L8 10" />
+                </svg>
+            </span>
+            <span>Work</span>
+        </a>
+        <h1 class="project-title" style="margin-top: 5px;">StyleSpan</h1>
+    </div>
+
+    <!-- Project Image -->
+    <div class="project-info-grid" style="margin-top: -10px;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/stylespan/SS Intro.png" alt="StyleSpan Intro Image" style="width: 100%; display: block; box-shadow: none;">
+            <div class="project-tags" style="padding: 0;">
+                <span>&nbsp;Digital Design&nbsp;</span>
+                <span>&nbsp;Gen AI&nbsp;</span>
+            </div>
+        </div>
+    </div>
+
+        <div class="project-info-grid">
+        <div class="project-overview">Project Overview</div>
+        <div class="info-items-container">
+            <div class="info-item">
+                <h3>Company</h3>
+                <p>IDEO</p>
+            </div>
+            <div class="info-item">
+                <h3>Role</h3>
+                <p>Interaction Designer</p>
+            </div>
+            <div class="info-item">
+                <h3>Duration</h3>
+                <p>6 weeks</p>
+            </div>
+            <div class="info-item">
+                <h3>Team</h3>
+                <p>2 interaction designers, 2 IDEO guides</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Context</h2>
+        <div class="context-body">
+            <p>This project was completed during my time as an Interaction Designer at IDEO.  I was tasked with revisiting a previous IDEO initiative—<a href="https://www.ideo.com/works/bagging-the-bag" target="_blank">Beyond the Bag</a>, a service design project focused on reducing plastic waste in the shopping experience—and approaching the challenge through a new lens.</p>
+            <p>My role as Interaction Designer was to lead the exploration of the problem, conduct user research to uncover key pain points and opportunity areas, and design a new service experience that met the needs of our consumers.</p>
+            </div>
+            </div>
+
+    <!-- Second Context Section -->
+    <div class="context-grid">
+        <div>
+            <h2 class="project-context">Problem</h2>
+            <div class="image-container">
+                <img src="assets/stylespan/SS Problem.png" alt="StyleSpan Problem" class="project-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Third Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Research</h2>
+        <div class="context-body">
+            <p>We mapped the journey of plastic waste across the fashion supply chain—from raw material production to packaging to disposal—and quickly realized the greatest opportunity lay in consumption. By shifting behaviour at the source, we could prevent plastic waste before it ever entered the system.</p>
+            <p>To build a solution grounded in real user needs, we conducted 12 interviews to explore the emotions, habits, and decisions behind clothing purchases. Through careful synthesis, we uncovered three key insights that shaped our design strategy.</p>
+        </div>
+    </div>
+
+    <div class="context-grid" style="margin-top: 0px;">
+        <div class="image-container">
+            <img src="assets/stylespan/SS Journey.png" alt="StyleSpan Journey" class="project-image">
+        </div>
+    </div>
+
+    <div class="context-grid" style="margin-top: 0px;">
+        <div class="image-container">
+            <img src="assets/stylespan/SS Research.png" alt="StyleSpan Research" class="project-image">
+        </div>
+    </div>
+
+    <!-- Fourth Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Ideation</h2>
+        <div class="context-body">
+            <p>How might we empower shoppers to practice mindful consumption by offering them tangible insights into the value of their wardrobe choices?</p>
+            <p>Brainstorming a wide range of ideas, we narrowed down to three early concepts that explored different approaches to this challenge. Using sketches and concept cards, we tested these prototypes with users and defined a set of design principles to guide our final concept.</p>
+        </div>
+    </div>
+
+    <div class="context-grid" style="margin-top: 0px;">
+        <div class="image-container">
+            <img src="assets/stylespan/SS Prototyping.png" alt="StyleSpan Prototyping" class="project-image">
+        </div>
+    </div>
+
+    <div class="context-grid" style="margin-top: 0px;">
+        <div class="image-container">
+            <img src="assets/stylespan/SS Design Principles.png" alt="StyleSpan Design Principles" class="project-image">
+        </div>
+    </div>
+
+    <!-- Fifth Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Concept</h2>
+        <div class="context-body">
+            <p>And so we created StyleSpan—a smart clothing tag system paired with a companion app that helps users track their wardrobe habits and understand the true value of their items over time.</p>
+            <p>By revealing hidden patterns in their closet, StyleSpan empowers users to make more mindful, intentional choices about what they buy and wear.</p>
+        </div>
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 60px; overflow: hidden;">
+        <div style="clip-path: inset(0 4px 0 4px); width: calc(100% + 8px); margin: 0 -4px;">
+            <video style="width: 100%; display: block; box-shadow: none; margin-bottom: -4px;" autoplay loop muted playsinline>
+                <source src="assets/stylespan/SS Hero Video.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div style="max-width: 1200px; margin: 60px auto 0; padding: 0 60px; overflow: hidden;">
+        <div style="clip-path: inset(1px 4px 0 4px); width: calc(100% + 8px); margin: 0 -4px;">
+            <video style="width: 100%; display: block; box-shadow: none; margin-bottom: -4px;" autoplay loop muted playsinline>
+                <source src="assets/stylespan/SS Product 1.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 60px; overflow: hidden;">
+        <img src="assets/stylespan/SS Product 2.png" alt="StyleSpan Product 2" style="width: 100%; display: block; box-shadow: none !important; margin-bottom: -4px;">
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 60px; overflow: hidden;">
+        <div style="clip-path: inset(0 4px 0 4px); width: calc(100% + 8px); margin: 0 -4px;">
+            <video style="width: 100%; display: block; box-shadow: none; margin: -2px 0 -20px 0;" autoplay loop muted playsinline>
+                <source src="assets/stylespan/SS Product 3.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 60px; overflow: hidden;">
+        <div style="clip-path: inset(0 4px 0 4px); width: calc(100% + 8px); margin: 0 -4px;">
+            <video style="width: 100%; display: block; box-shadow: none; margin: -2px 0 -4px 0;" autoplay loop muted playsinline>
+                <source src="assets/stylespan/SS Product 4.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 60px; overflow: hidden;">
+        <img src="assets/stylespan/SS Product 5.png" alt="StyleSpan Product 5" style="width: 100%; display: block; box-shadow: none !important; margin: -2px 0 -4px 0;">
+    </div>
+
+    <script>
+        // Function to dynamically load HTML components (nav, footer)
+        function loadComponent(id, file, callback) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                    if (callback) callback(); // Ensure scripts inside the loaded file work
+                })
+                .catch(error => console.error(`Error loading ${file}:`, error));
+        }
+
+        // Load the navigation and footer when the DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComponent('nav-placeholder', 'nav.html', setupNav);
+            loadComponent('footer-placeholder', 'footer.html');
+        });
+
+        // Setup the mobile menu toggle after nav is loaded
+        function setupNav() {
+            window.toggleMenu = function() {
+            const mobileMenu = document.getElementById("mobileMenu");
+                if (mobileMenu) {
+            mobileMenu.classList.toggle("active");
+                } else {
+                    console.warn("Mobile menu element not found!");
+                }
+            };
+        }
+
+        // Function to load footer
+        function loadFooter() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('beforeend', data);
+                });
+        }
+        
+        // Load footer when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFooter();
+        });
+    </script>
+</body>
+</html> 

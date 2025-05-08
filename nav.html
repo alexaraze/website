@@ -1,0 +1,87 @@
+<nav class="nav-header" id="mainNav">
+    <div class="nav-container">
+        <div class="nav-left">
+            <a href="index.html" class="nav-home">
+                <img src="assets/ac_monogram_black.png" alt="Alexa Chomat Logo" class="logo" id="navLogo">
+                <h1 class="nav-name">Alexa Chomat</h1>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="work.html?scroll=experiments">Experiments</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <!-- Hamburger Menu for Mobile -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+        <!-- Mobile Dropdown -->
+        <ul class="mobile-menu" id="mobileMenu">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="work.html?scroll=experiments">Experiments</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+</nav>
+
+<script>
+    // Check if the page has a dark background
+    function checkDarkBackground() {
+        // Check if we're on the index page (home page)
+        const isHomePage = window.location.pathname === '/' || 
+                          window.location.pathname === '/index.html' ||
+                          window.location.pathname.endsWith('/index.html');
+        
+        if (isHomePage) {
+            // Apply dark styling
+            const nav = document.getElementById('mainNav');
+            nav.classList.add('nav-dark');
+            
+            // Change logo to white version
+            const logo = document.getElementById('navLogo');
+            logo.src = 'assets/ac_monogram.png';
+        }
+    }
+    
+    // Run the check when the page loads
+    window.addEventListener('DOMContentLoaded', checkDarkBackground);
+    
+    // Define toggleMenu function with overlay
+    window.toggleMenu = function() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        
+        if (!mobileMenu.classList.contains("active")) {
+            // Opening the menu - add overlay
+            mobileMenu.classList.add("active");
+            
+            // Create overlay if it doesn't exist
+            let overlay = document.getElementById("menu-overlay");
+            if (!overlay) {
+                overlay = document.createElement("div");
+                overlay.id = "menu-overlay";
+                overlay.style.position = "fixed";
+                overlay.style.top = "0";
+                overlay.style.left = "0";
+                overlay.style.width = "100%";
+                overlay.style.height = "100%";
+                overlay.style.backgroundColor = "transparent";
+                overlay.style.zIndex = "998"; // Below menu but above other content
+                
+                // Close menu when overlay is clicked
+                overlay.addEventListener("click", function() {
+                    mobileMenu.classList.remove("active");
+                    overlay.remove();
+                });
+                
+                document.body.appendChild(overlay);
+            }
+        } else {
+            // Closing the menu - remove overlay
+            mobileMenu.classList.remove("active");
+            const overlay = document.getElementById("menu-overlay");
+            if (overlay) {
+                overlay.remove();
+            }
+        }
+    };
+</script>

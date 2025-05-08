@@ -1,0 +1,519 @@
+body {
+    margin: 0;
+    padding: 0;  
+}
+
+/* TEXT */
+@font-face {
+    font-family: 'impact-label';
+    src: url('Fonts/Impact Label.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'impact-label-reversed';
+    src: url('Fonts/Impact Label Reversed.ttf') format('truetype');
+}
+h1{
+    font-family: 'impact-label-reversed', sans-serif;
+    font-size: 55px;
+    font-weight: 300;
+    line-height: 150%;
+    color: #ffffff;
+    white-space: nowrap;
+    margin: 0 auto;
+}
+h2{
+  font-family: 'impact-label-reversed', sans-serif;
+  font-size: 28px;
+  font-weight: 300;
+  text-decoration: underline;
+  line-height: 150%;
+  color: #ffffff;
+  white-space: nowrap;
+  margin: 0 auto;
+}
+h3{
+    font-family: 'impact-label-reversed', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 150%;
+    color: #ffffff;
+    white-space: nowrap;
+    margin: 0 auto;
+  }
+h4{
+    font-family: 'impact-label-reversed', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    text-decoration: underline;
+    line-height: 150%;
+    color: #ffffff;
+    white-space: nowrap;
+    margin: 0 auto;
+}
+
+/* BACKGROUND */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; 
+    z-index: -1;
+
+    background-image: url('assets/irisraze_haze.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    background-color: #000000; /* Black background in case image doesn't load */
+}
+
+/* LOGO */
+.monogram {
+    width: 100%;
+    height: 20vh;
+    position: fixed;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, 0);
+    z-index: 1;
+    background-image: url('assets/ac_monogram.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* DIVS */
+.alexa-chomat {
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 43vh;
+    z-index: 2;
+}
+
+.tagline {
+    font-family: 'impact-label-reversed', sans-serif;
+    font-size: 32px;
+    color: white;
+    max-width: 800px;
+    padding: 0 80px;
+    margin: 30vh 0;
+    line-height: 1.2;
+}
+
+.portfolio a {
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 61vh;
+    z-index: 2;
+    color: #ffffff;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    position: absolute;
+    width: 100%;
+    bottom: 10%;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.flex-item {
+    flex: 1;
+    min-width: 160px;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+    .flex-container {
+        flex-direction: column;
+    }
+    .monogram {
+        height: 15vh;
+        top: 15%;
+    }
+    .alexa-chomat, .portfolio {
+        position: relative;
+        top: initial;
+        bottom: initial;
+    }
+
+    .alexa-chomat {
+        top: 35%;
+    }
+
+    .portfolio a{
+        top: 50%;
+    }
+
+    .flex-container {
+        flex-direction: column;
+        position: fixed;
+        bottom: 10%;
+    }
+    .tagline {
+        font-size: 24px;
+        padding: 0 40px;
+        line-height: 1.3;
+    }
+}
+
+.footer {
+    max-width: 1200px;
+    margin: 100px auto 0;
+    padding: 0 60px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'impact-label-reversed', sans-serif;
+    font-size: 16px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+}
+
+.footer a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #52f625;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 20px 30px;
+        margin: 60px 20px 0 auto;
+        max-width: calc(100% - 40px);
+    }
+
+    .footer > div {
+        text-align: right;
+        width: 100%;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Navigation Styles */
+.nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 1000;
+    width: 100%;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-home {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    transition: all 0.15s ease;
+}
+
+.logo {
+    height: 30px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.nav-name {
+    font-family: 'impact-label-reversed', sans-serif;
+    font-size: 22px;
+    margin: 0;
+    color: black;
+    transition: all 0.15s ease;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.nav-links li a {
+    color: black;
+    text-decoration: none;
+    font-family: 'impact-label-reversed', sans-serif;
+    font-size: 22px;
+    transition: all 0.15s ease;
+}
+
+.nav-links li a:hover {
+    color: #52f625;
+    text-decoration: underline;
+}
+
+/* Mobile Menu Styles */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    z-index: 1001;
+    color: black;
+    margin-left: auto;
+    transition: all 0.15s ease;
+}
+
+.hamburger:hover {
+    color: #52f625;
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: transparent;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: auto;
+    list-style: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: right;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu li {
+    padding: 5px 0;
+    margin-right: 20px;
+}
+
+.mobile-menu li a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.15s ease;
+    background-color: white;
+    padding: 3px 10px;
+    display: inline-block;
+}
+
+.mobile-menu li a:hover {
+    color: #52f625;
+    text-decoration: underline;
+}
+
+/* Hover Effects */
+.nav-home:hover .logo {
+    filter: brightness(0) saturate(100%) invert(77%) sepia(20%) saturate(2947%) hue-rotate(58deg) brightness(101%) contrast(101%);
+}
+
+.nav-home:hover .nav-name {
+    color: #52f625;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .nav-name {
+        display: none;
+    }
+
+    .nav-left {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .logo {
+        height: 30px;
+    }
+}
+
+/* Dark background navigation styles - improved for all screen sizes */
+.nav-dark {
+    background-color: transparent !important; /* Override any other background */
+}
+
+.nav-dark .nav-name {
+    color: white;
+}
+
+.nav-dark .nav-links a {
+    color: white;
+}
+
+.nav-dark .hamburger {
+    color: white;
+}
+
+.nav-dark .hamburger:hover {
+    color: #52f625;
+}
+
+.nav-dark .mobile-menu li a {
+    font-family: 'impact-label-reversed', sans-serif;
+    color: white;
+    background-color: transparent;
+}
+
+.nav-dark .mobile-menu li a:hover {
+    color: #52f625;
+    text-decoration: underline;
+}
+
+/* Ensure dark nav works on all screen sizes */
+@media (max-width: 768px) {
+    .nav-dark {
+        background-color: transparent !important;
+    }
+    
+    .nav-dark .hamburger {
+        color: white;
+    }
+
+    .nav-dark .hamburger:hover {
+        color: #52f625;
+    }
+}
+
+/* Dark footer styles */
+.footer-dark {
+    color: white;
+    margin-bottom: 0;
+    padding-bottom: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-dark a {
+    color: white;
+}
+
+.footer-dark a:hover {
+    color: #52f625;
+    text-decoration: underline;
+}
+
+/* Additional fixes for index page spacing */
+html, body {
+    height: 100%; /* Ensure full height */
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Ensure canvas covers full viewport */
+#background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* Special case for index page */
+[data-theme="dark"] .footer-dark {
+    margin-top: auto; /* Push to bottom if content is short */
+    position: relative;
+    bottom: 0;
+}
+
+/* Fix for mobile */
+@media (max-width: 768px) {
+    [data-theme="dark"] .footer-dark {
+        margin-top: 60px; /* Consistent with other pages */
+    }
+}
+
+/* Fix for index page footer positioning */
+[data-theme="dark"] body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+[data-theme="dark"] .tagline {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+[data-theme="dark"] .footer-dark {
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+
+/* Ensure the footer stays at bottom on index page */
+@media (max-height: 700px) {
+    [data-theme="dark"] .tagline {
+        margin: 20vh 0 10vh;
+    }
+}

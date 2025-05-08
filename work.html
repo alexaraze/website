@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+        
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* WORK SECTION STYLING */
+        .grid-container {
+            max-width: 1200px;
+            margin: 50px auto 60px;
+            padding: 0 60px;
+            padding-top: 0;
+        }
+
+        .project {
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 100px;
+        }
+
+        .project a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-title {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 24px;
+            color: black;
+            margin-bottom: 10px;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            object-position: center;
+            border: 2px solid transparent;
+            transition: border 0.3s ease;
+            border-radius: 0;
+        }
+
+        .project a:hover .project-title {
+            color: #52f625;
+            text-decoration: underline;
+        }
+
+        .project a:hover img {
+            border: 2px solid #52f625;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .project-tags span {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            background-color: black;
+            color: white;
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        .project a {
+            margin-top: 0;
+            display: block;
+            text-decoration: none;
+        }
+
+        .project a:hover img {
+            border: 2px solid #52f625;
+        }
+
+        /* EXPERIMENTS SECTION STYLING */
+        .experiments-section {
+            margin-top: 160px;
+            padding-top: 40px;
+        }
+
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experiment-project {
+            border: none;
+            padding: 0;
+            text-align: left;
+            background-color: transparent;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            margin: 0 0 60px 0;
+        }
+
+        .experiment-project a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .experiment-title {
+            font-size: 24px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: black;
+            text-decoration: none;
+            text-align: left;
+            padding-left: 0;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .experiment-project img, .experiment-project video {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0px;
+            border: 2px solid transparent;
+            transition: border 0.3s ease;
+            margin: 0 auto 0 0;
+            display: block;
+            max-width: 300px;
+        }
+
+        .experiment-project a:hover .experiment-title {
+            color: #52f625;
+            text-decoration: underline;
+        }
+
+        .experiment-project a:hover img,
+        .experiment-project a:hover video {
+            border: 2px solid #52f625;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .project {
+                width: 100%;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .project img {
+                height: auto;
+            }
+
+            .grid-container {
+                padding: 0 40px;
+            }
+
+            .experiments-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project {
+                width: 100%;
+                margin-bottom: 60px;
+            }
+
+            .grid-container {
+                padding: 0 20px;
+                margin-top: 120px;
+            }
+
+            .experiments-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                padding: 10px 20px;
+                gap: 15px;
+            }
+
+            .experiment-title {
+                font-size: 24px;
+            }
+
+            .page-title-container {
+                margin-top: 140px;
+                margin-bottom: 5px;
+                padding: 0 20px;
+                text-align: center;
+            }
+            
+            .grid-container {
+                margin-top: 30px;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project {
+                margin-bottom: 40px;
+            }
+            
+            .grid-container {
+                padding: 0 15px;
+            }
+
+            .experiments-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experiment-project a, .experiment-project img, .experiment-project video {
+                max-width: 100%;
+            }
+
+            .experiment-title {
+                font-size: 24px;
+            }
+        }
+
+        /* Page Title Styling */
+        .page-title-container {
+            max-width: 1200px;
+            margin: 180px auto 10px;
+            padding: 0 60px;
+        }
+
+        .page-title {
+            font-family: 'impact-label', sans-serif;
+            font-size: 28px;
+            color: black;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .page-title-container {
+                margin-top: 140px;
+                margin-bottom: 5px;
+                padding: 0 20px;
+                text-align: center;
+            }
+            
+            .grid-container {
+                margin-top: 30px;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 22px;
+            }
+        }
+
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            margin: 0 0 60px 0;
+            padding: 0;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 24px;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-right: 50px;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Add a title at the top of the work page -->
+    <div class="page-title-container" style="margin-bottom: 0;">
+        <h1 class="page-title">&nbsp;Case Studies&nbsp;</h1>
+    </div>
+
+    <!-- Navigation and Footer placeholders -->
+    <div id="nav-placeholder"></div>
+
+    <!-- PAGE CONTENT -->
+    <div class="grid-container" style="margin-top: 40px;">
+        <div class="marquee">
+            <span>Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;Case Studies&nbsp;&nbsp;&nbsp;</span>
+        </div>
+        <div class="project">
+            <a href="stylespan.html">
+                <div class="project-title">StyleSpan</div>
+                <img src="assets/stylespan/SS Intro.png" alt="StyleSpan Photo">
+            </a>
+            <div class="project-tags">
+                <span>&nbsp;Digital Design&nbsp;</span>
+                <span>&nbsp;Internet of Things&nbsp;</span>
+            </div>
+        </div>
+
+        <!-- Temporarily hidden
+        <div class="project">
+            <a href="tapestry.html">
+                <div class="project-title">Tapestry</div>
+                <img src="assets/tapestry/Tapestry Mockup 2.png" alt="Tapestry Photo">
+            </a>
+            <div class="project-tags">
+                <span>&nbsp;Digital Design&nbsp;</span>
+                <span>&nbsp;Gen AI&nbsp;</span>
+            </div>
+        </div>
+        -->
+
+        <div class="project">
+            <a href="pennmedicine.html">
+                <div class="project-title">Penn Medicine</div>
+                <img src="assets/penn medicine/Render 3.jpeg" alt="Penn Medicine Photo">
+            </a>
+            <div class="project-tags">
+                <span>&nbsp;Physical Prototyping&nbsp;</span>
+                <span>&nbsp;Electronics&nbsp;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experiments Section -->
+    <div class="experiments-section" id="experiments" style="margin-top: 160px;">
+        <div class="page-title-container" style="margin-bottom: 0;">
+            <h1 class="page-title">&nbsp;Experiments&nbsp;</h1>
+        </div>
+        <div class="grid-container" style="margin-top: 40px; margin-bottom: 0;">
+            <div class="marquee">
+                <span>Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;Experiments&nbsp;&nbsp;&nbsp;</span>
+            </div>
+        </div>
+
+        <!-- PROJECT GRID -->
+        <div class="experiments-grid" style="margin-top: 60px;">
+            <div class="experiment-project">
+                <a href="delicatewarfare.html">
+                    <div class="experiment-title">Delicate Warfare</div>
+                    <video autoplay loop muted playsinline>
+                        <source src="assets/delicate warfare/Holographic Render.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </a>
+                <div class="project-tags">
+                    <span>&nbsp;CAD&nbsp;</span>
+                    <span>&nbsp;3D Printing&nbsp;</span>
+                </div>
+            </div>
+            <div class="experiment-project">
+                <a href="flubber.html">
+                    <div class="experiment-title">Flubber</div>
+                    <img src="assets/flubber/Flubber3.gif" alt="Flubber Animation">
+                </a>
+                <div class="project-tags">
+                    <span>&nbsp;Generative Code&nbsp;</span>
+                    <span>&nbsp;p5.js&nbsp;</span>
+                </div>
+            </div>
+            <div class="experiment-project">
+                <a href="edenpods.html">
+                    <div class="experiment-title">Eden Pods</div>
+                    <img src="assets/eden/Eden Square.png" alt="Eden Pods Photo" loading="eager" decoding="async">
+                </a>
+                <div class="project-tags">
+                    <span>&nbsp;Speculative Design&nbsp;</span>
+                    <span>&nbsp;CAD&nbsp;</span>
+                </div>
+            </div>
+            <div class="experiment-project">
+                <a href="mechanicalflower.html">
+                    <div class="experiment-title">Mechanical Flower</div>
+                    <img src="assets/mechanical flower/Mechanical Flower.gif" alt="Mechanical Flower Photo">
+                </a>
+                <div class="project-tags">
+                    <span>&nbsp;Gen AI&nbsp;</span>
+                    <span>&nbsp;Projection Mapping&nbsp;</span>
+                </div>
+            </div>
+            <div class="experiment-project">
+                <a href="captcha_irl.html">
+                    <div class="experiment-title">Captcha_IRL</div>
+                    <img src="assets/CAPTCHA_IRL/CAPTCHA_IRL.jpeg" alt="Captcha IRL Photo">
+                </a>
+                <div class="project-tags">
+                    <span>&nbsp;Art Installation&nbsp;</span>
+                    <span>&nbsp;Electronics&nbsp;</span>
+                </div>
+            </div>
+            <div class="experiment-project">
+                <a href="skyspace.html">
+                    <div class="experiment-title">Skyspace</div>
+                    <img src="assets/turrell clock/Turrell_Clock3.gif" alt="Skyspace Photo">
+                </a>
+                <div class="project-tags">
+                    <span>&nbsp;Computational Design&nbsp;</span>
+                    <span>&nbsp;p5.js&nbsp;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Function to dynamically load HTML components (nav, footer)
+        function loadComponent(id, file, callback) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                    if (callback) callback(); // Ensure scripts inside the loaded file work
+                })
+                .catch(error => console.error(`Error loading ${file}:`, error));
+        }
+
+        // Load the navigation and footer when the DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComponent('nav-placeholder', 'nav.html', setupNav);
+            loadComponent('footer-placeholder', 'footer.html');
+
+            // Check for scroll parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('scroll') === 'experiments') {
+                // Remove the parameter from the URL without reloading
+                window.history.replaceState({}, '', 'work.html');
+                
+                // Wait for everything to load
+                setTimeout(() => {
+                    const experimentsSection = document.getElementById('experiments');
+                    if (experimentsSection) {
+                        experimentsSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 100);
+            }
+        });
+
+        // Setup the mobile menu toggle after nav is loaded
+        function setupNav() {
+            window.toggleMenu = function() {
+                const mobileMenu = document.getElementById("mobileMenu");
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle("active");
+                } else {
+                    console.warn("Mobile menu element not found!");
+                }
+            };
+        }
+    </script>
+</body>
+</html>
+

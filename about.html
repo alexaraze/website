@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Add Gotham font for body text */
+        p {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ABOUT CONTENT */
+        .about-container {
+            max-width: 1200px;
+            margin: 180px auto 80px;
+            padding: 0 60px;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .left-column {
+            flex: 0.8;
+            position: relative;
+            padding-right: 20px;
+            max-width: 600px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .image-container {
+            flex: 1;
+            position: relative;
+            min-width: 400px;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 0;
+            padding-left: 60px;
+        }
+
+        .about-image {
+            width: 400px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+            display: block;
+            margin: 0;
+        }
+
+        .preview-container,
+        .dots-container {
+            width: 400px; /* Match new image width */
+        }
+
+        .preview-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            margin-top: 0;
+        }
+
+        .preview-container.active {
+            opacity: 1;
+        }
+
+        .dot {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            opacity: 0;
+        }
+
+        .preview-dot {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .preview-dot canvas {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        /* Customize scrollbar for webkit browsers */
+        .about-content::-webkit-scrollbar,
+        .about-content::-webkit-scrollbar-track,
+        .about-content::-webkit-scrollbar-thumb {
+            display: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column; /* Stack the image and text */
+                align-items: center; /* Center align */
+                padding: 0 20px; /* Adjust padding for smaller screens */
+                margin: 140px auto 60px; /* Match mobile page title margin */
+            }
+
+            .left-column {
+                max-width: 100%; /* Allow full width on smaller screens */
+                padding-right: 0; /* Remove right padding */
+            }
+
+            .image-container {
+                width: 100%; /* Allow image container to take full width */
+                justify-content: center; /* Center the image */
+            }
+
+            .about-image {
+                width: 100%; /* Make image responsive */
+                max-width: 400px; /* Set a max width */
+            }
+
+            .resume-container {
+                padding: 0 20px;
+            }
+
+            .dot {
+                width: 30px;
+                height: 30px;
+            }
+
+            .preview-dot {
+                width: 30px;
+                height: 30px;
+            }
+
+            .left-column {
+                max-height: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr; /* Change to single column */
+                grid-template-areas: 
+                    "photo"
+                    "text"; /* Define the order: photo first, then text */
+                gap: 30px;
+            }
+            
+            .about-text {
+                grid-area: text; /* Assign to text area */
+            }
+            
+            .about-photo {
+                grid-area: photo; /* Assign to photo area */
+                margin: 0 auto; /* Center the photo */
+                max-width: 100%;
+            }
+        }
+
+        /* Larger screen styles */
+        @media (min-width: 769px) {
+            .about-container {
+                flex-direction: row; /* Side by side layout */
+                align-items: flex-start; /* Align items to the start */
+                padding: 0 60px; /* Match the left padding of the intro text */
+                margin: 180px auto 60px; /* Set margin for larger screens */
+            }
+
+            .image-container {
+                flex: 1; /* Allow image container to take available space */
+                justify-content: flex-end; /* Align image to the right */
+            }
+
+            .left-column {
+                flex: 0.8; /* Allow text column to take more space */
+                padding-right: 20px; /* Keep some spacing between text and image */
+                max-width: 600px; /* Set max width for text column */
+            }
+        }
+
+        /* Update image styles */
+        .dots-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Keep the greeting in impact-label-reversed */
+        .greeting {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Ensure about content text uses Gotham with correct size */
+        .about-content p:not(.greeting) {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        /* Resume Section Styles */
+        .resume-container {
+            margin-top: 100px;
+            margin-bottom: 0;
+            padding: 0 60px;
+            background-color: white;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .resume-container {
+                padding: 0 20px;
+            }
+        }
+
+        .resume-grid {
+            max-width: 600px;
+            margin: 0;
+        }
+
+        .resume-container h2 {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-weight: 300;
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: black;
+            letter-spacing: normal;
+            text-decoration: none; /* Ensure no underline */
+        }
+
+        .resume-row {
+            display: grid;
+            grid-template-columns: 25% 75%;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .resume-row {
+                grid-template-columns: 30% 70%;
+                gap: 20px;
+            }
+        }
+
+        .resume-date {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .resume-company {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .resume-role {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 14px;
+            margin-top: 5px;
+            color: #333;
+        }
+
+        /* Container for company and role */
+        .resume-info {
+            display: flex;
+            flex-direction: column; /* Stack company and role vertically */
+        }
+
+        /* Add this line before the resume section */
+        .divider {
+            border: none; /* Remove default border */
+            height: 2px; /* Set height for the line */
+            background-color: #52f625; /* Use the green color from the nav bar */
+            margin: 40px 0; /* Add space above and below the line */
+        }
+
+        .resume-download {
+            margin-top: 60px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .resume-download a {
+            display: inline-block;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 18px;
+            color: black;
+            text-decoration: none;
+            margin-top: 20px;
+            padding: 0 0 1px 0;
+            background-color: transparent;
+            border-bottom: 1px solid black;
+            transition: all 0.15s ease;
+        }
+        
+        .resume-download a:hover {
+            color: #52f625;
+            border-bottom-color: #52f625;
+        }
+        
+        .resume-download a .arrow {
+            display: inline-block;
+            margin-left: 4px;
+            color: black;
+            font-size: 16px;
+            transition: all 0.15s ease;
+        }
+        
+        .resume-download a:hover .arrow {
+            color: #52f625;
+            transform: translateX(3px);
+        }
+
+        /* Add style for the horizontal line */
+        .resume-divider {
+            border: none;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.2);
+            margin: 40px 0;
+        }
+
+        /* Remove the resume-header style since we're not using it anymore */
+        .resume-header {
+            display: none;
+        }
+
+        /* Update marquee container to have even padding */
+        .marquee-container {
+            background-color: #52f625;
+            overflow: hidden;
+            width: 100%;
+            margin: 80px 0;
+            height: auto; /* Remove fixed height */
+            padding: 15px 0; /* Add equal padding top and bottom */
+        }
+
+        .marquee {
+            white-space: nowrap;
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-text {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 28px;
+            padding: 0; /* Remove padding from text */
+            color: black;
+            text-transform: uppercase;
+            margin: 0;
+            flex-shrink: 0;
+            margin-right: 60px;
+        }
+
+        /* Add more copies for smoother loop */
+        .marquee-content {
+            display: flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-50% - 30px)); /* Adjust for smoother transition */
+            }
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .marquee-container {
+                padding: 10px 0; /* Smaller padding on mobile */
+            }
+            .marquee-text {
+                font-size: 18px;
+            }
+        }
+
+        /* Remove rounded corners from the profile photo with higher specificity */
+        .about-container .profile-photo,
+        .about-section .profile-photo,
+        img.profile-photo {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0 !important; /* Force remove rounded corners */
+            overflow: hidden;
+        }
+
+        /* Target the specific about image with the highest specificity */
+        .image-container .main-image img.about-image,
+        #originalImage,
+        .about-image {
+            border-radius: 0 !important;
+            overflow: hidden !important;
+        }
+
+        /* Also target the container elements that might have border-radius */
+        .image-container,
+        .main-image {
+            border-radius: 0 !important;
+            overflow: hidden !important;
+        }
+
+        /* Page Title Styling */
+        .page-title-container {
+            max-width: 1200px;
+            margin: 180px auto 10px;
+            padding: 0 60px;
+        }
+
+        .page-title {
+            font-family: 'impact-label', sans-serif;
+            font-size: 28px;
+            color: black;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .page-title-container {
+                margin-top: 140px;
+                margin-bottom: 5px;
+                padding: 0 20px;
+                text-align: center;
+            }
+            
+            .grid-container {
+                margin-top: 30px;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation placeholder -->
+    <div id="nav-placeholder"></div>
+
+    <!-- ABOUT CONTENT -->
+    <div class="about-container">
+        <div class="left-column">
+            <div class="about-content">
+                <p class="greeting">Hi, I'm Alexa.</p>
+                <p>I'm an interaction designer at IDEO, where I craft tech-driven products and experiences to help our clients reimagine what's possible.</p>
+                <p>I'm passionate about bringing together design and emerging tech to create purposeful, user-centred products. I spent 4 years as a product manager for CAA's startup studio, developing celebrity brands that tap into the intersection of pop culture and technology. I then specialized in emerging tech design at the University of Pennsylvania, experimenting with tools like Gen AI, 3D printing, Arduino, IoT, and interactive coding to explore how design can shape the evolution of technology—and humanity.</p>
+                <p>Let's connect to chat about design, product innovation, or the future of tech.</p>
+            </div>
+            <div class="preview-container">
+                <!-- Preview dots will be added here -->
+            </div>
+        </div>
+        <div class="image-container" id="dotContainer">
+            <div class="main-image">
+                <img src="assets/Alexa Chomat.jpeg" alt="Alexa Chomat" class="about-image" id="originalImage">
+                <div class="dots-container">
+                    <!-- White dots will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Updated HTML structure -->
+    <div class="marquee-container">
+        <div class="marquee">
+            <span class="marquee-text">Design • Technology • Innovation • Prototyping • Futurism • AI • Storytelling • Strategy • Ideation •</span>
+            <span class="marquee-text">Design • Technology • Innovation • Prototyping • Futurism • AI • Storytelling • Strategy • Ideation •</span>
+            <span class="marquee-text">Design • Technology • Innovation • Prototyping • Futurism • AI • Storytelling • Strategy • Ideation •</span>
+            <span class="marquee-text">Design • Technology • Innovation • Prototyping • Futurism • AI • Storytelling • Strategy • Ideation •</span>
+        </div>
+    </div>
+
+    <!-- EXPERIENCE SECTION -->
+    <div class="resume-container">
+        <h2>Experience</h2>
+        <div class="resume-grid">
+            <div class="resume-row">
+                <div class="resume-date">2024 - Present</div>
+                <div class="resume-info">
+                    <div class="resume-company">IDEO</div>
+                    <div class="resume-role">Interaction Designer</div>
+                </div>
+            </div>
+            <div class="resume-row">
+                <div class="resume-date">2023 - 2024</div>
+                <div class="resume-info">
+                    <div class="resume-company">Wharton Venture Lab</div>
+                    <div class="resume-role">Product Founder</div>
+                </div>
+            </div>
+            <div class="resume-row">
+                <div class="resume-date">2018 - 2022</div>
+                <div class="resume-info">
+                    <div class="resume-company">Caravan; Creative Artists Agency</div>
+                    <div class="resume-role">Product Manager</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="resume-divider">
+
+        <h2>Education</h2>
+        <div class="resume-grid">
+            <div class="resume-row">
+                <div class="resume-date">2024</div>
+                <div class="resume-info">
+                    <div class="resume-company">University of Pennsylvania</div>
+                    <div class="resume-role">MS Integrated Product Design</div>
+                </div>
+            </div>
+            <div class="resume-row">
+                <div class="resume-date">2018</div>
+                <div class="resume-info">
+                    <div class="resume-company">Ivey Business School</div>
+                    <div class="resume-role">BA Business Administration</div>
+                </div>
+            </div>
+            <div class="resume-row">
+                <div class="resume-date">2018</div>
+                <div class="resume-info">
+                    <div class="resume-company">Western University</div>
+                    <div class="resume-role">BA Media, Information & Technoculture</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="resume-download">
+            <a href="/assets/64efb1a5f9208b1b3da8013e_Alexa-Chomat-Resume.pdf" target="_blank">See full resume<span class="arrow">→</span></a>
+        </div>
+    </div>
+
+    <!-- Footer placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Function to dynamically load HTML components (nav, footer)
+        function loadComponent(id, file, callback) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                    if (callback) callback(); // Ensure scripts inside the loaded file work
+                })
+                .catch(error => console.error(`Error loading ${file}:`, error));
+        }
+        
+        // Load the navigation and footer when the DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComponent('nav-placeholder', 'nav.html', setupNav);
+            loadComponent('footer-placeholder', 'footer.html');
+        });        
+
+        // Setup the mobile menu toggle after nav is loaded
+        function setupNav() {
+            window.toggleMenu = function() {
+            const mobileMenu = document.getElementById("mobileMenu");
+                if (mobileMenu) {
+            mobileMenu.classList.toggle("active");
+                } else {
+                    console.warn("Mobile menu element not found!");
+                }
+            };
+        }
+
+        function createDotEffect() {
+            const container = document.getElementById('dotContainer');
+            const originalImage = document.getElementById('originalImage');
+            const dotsContainer = container.querySelector('.dots-container');
+            const previewContainer = document.querySelector('.preview-container');
+            
+            const DOT_SIZE = 40;
+            const DOTS_COUNT = 39;
+            const dots = [];
+            let isActive = false;
+            let autoAnimationTimeout;
+
+            // Create grid system
+            function createGrid() {
+                const imageWidth = 400;
+                const imageHeight = originalImage.offsetHeight;
+                const cols = Math.floor(imageWidth / DOT_SIZE);
+                const rows = Math.floor(imageHeight / DOT_SIZE);
+                const positions = [];
+
+                // Create all possible positions with padding to keep dots inside
+                for (let i = 0; i < rows; i++) {
+                    for (let j = 0; j < cols; j++) {
+                        positions.push({
+                            x: Math.min(j * DOT_SIZE + (Math.random() * (DOT_SIZE * 0.3)), imageWidth - DOT_SIZE),
+                            y: Math.min(i * DOT_SIZE + (Math.random() * (DOT_SIZE * 0.3)), imageHeight - DOT_SIZE)
+                        });
+                    }
+                }
+
+                return positions.sort(() => Math.random() - 0.5).slice(0, DOTS_COUNT);
+            }
+
+            function createDot(position, index) {
+                // Create white dot
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.style.left = `${position.x}px`;
+                dot.style.top = `${position.y}px`;
+                dotsContainer.appendChild(dot);
+
+                // Create preview dot
+                const previewDot = document.createElement('div');
+                previewDot.className = 'preview-dot';
+                previewDot.style.left = `${position.x}px`;
+                previewDot.style.top = `${position.y}px`;
+                
+                const canvas = document.createElement('canvas');
+                canvas.width = DOT_SIZE;
+                canvas.height = DOT_SIZE;
+                const ctx = canvas.getContext('2d');
+                
+                const scale = originalImage.naturalWidth / 400;
+                const scaledX = position.x * scale;
+                const scaledY = position.y * scale;
+                const scaledSize = DOT_SIZE * scale;
+                
+                ctx.beginPath();
+                ctx.arc(DOT_SIZE/2, DOT_SIZE/2, DOT_SIZE/2, 0, Math.PI * 2);
+                ctx.clip();
+                ctx.drawImage(originalImage, 
+                    scaledX, scaledY, scaledSize, scaledSize,
+                    0, 0, DOT_SIZE, DOT_SIZE
+                );
+                
+                previewDot.appendChild(canvas);
+                previewContainer.appendChild(previewDot);
+
+                return { dot, previewDot };
+            }
+
+            function startAnimation() {
+                if (!isActive) {
+                    isActive = true;
+                    let count = 0;
+                    const animate = () => {
+                        if (!isActive) return;
+                        if (count < dots.length) {
+                            const { dot, previewDot } = dots[count];
+                            dot.style.opacity = '1';
+                            previewDot.style.opacity = '1';
+                            count++;
+                            setTimeout(animate, 100);
+                        } else {
+                            // After completing the animation, wait a moment and then retreat
+                            setTimeout(() => {
+                                if (isActive) { // Only retreat if no user interaction
+                                    stopAnimation();
+                                }
+                            }, 1000);
+                        }
+                    };
+                    animate();
+                }
+            }
+
+            function stopAnimation() {
+                isActive = false;
+                // Start fading from wherever we currently are
+                const visibleDots = dots.filter(({ dot }) => dot.style.opacity === '1');
+                let startIndex = visibleDots.length - 1;
+                
+                const fadeOut = () => {
+                    if (startIndex >= 0) {
+                        const { dot, previewDot } = visibleDots[startIndex];
+                        requestAnimationFrame(() => {
+                            dot.style.opacity = '0';
+                            previewDot.style.opacity = '0';
+                        });
+                        startIndex--;
+                        setTimeout(fadeOut, 100);
+                    }
+                };
+                
+                fadeOut();
+            }
+
+            // Create dots using grid positions
+            const gridPositions = createGrid();
+            for (let i = 0; i < DOTS_COUNT; i++) {
+                const dotPair = createDot(gridPositions[i], i);
+                dots.push(dotPair);
+            }
+
+            // Start the automatic animation after a short delay
+            setTimeout(() => {
+                startAnimation();
+            }, 500);
+
+            // Add both event listeners
+            originalImage.addEventListener('mouseenter', () => {
+                clearTimeout(autoAnimationTimeout);
+                    startAnimation();
+            });
+
+            originalImage.addEventListener('mouseleave', (e) => {
+                e.preventDefault();
+                requestAnimationFrame(() => {
+                    stopAnimation();
+                });
+            });
+        }
+
+        // Call after page load and image load
+        document.addEventListener('DOMContentLoaded', () => {
+            const img = document.getElementById('originalImage');
+            if (img.complete) {
+                createDotEffect();
+            } else {
+                img.onload = () => {
+                    createDotEffect();
+                };
+            }
+        });
+    </script>
+</body>
+</html> 

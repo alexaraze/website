@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapestry - Alexa Chomat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Copy styles from stylespan.html */
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* NAVIGATION BAR - Same as stylespan.html */
+        .nav-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        /* ... (rest of nav styles) ... */
+
+        /* PROJECT CONTENT */
+        .project-container {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 80px;
+        }
+
+        .project-title {
+            font-size: 32px;
+            margin-bottom: 2px;
+            color: black;
+        }
+
+        .project-description {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            max-width: 800px;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+            margin: 40px 0;
+            border-radius: 5px;
+        }
+
+        /* ... (rest of project styles) ... */
+
+        /* Mobile styles same as stylespan.html */
+        @media (max-width: 768px) {
+            /* ... mobile styles ... */
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav class="nav-header">
+        <div class="nav-left">
+            <a href="index.html" class="nav-home">
+                <img src="assets/ac_monogram_black.png" alt="Alexa Chomat Logo" class="logo">
+                <h1 class="nav-name">Alexa Chomat</h1>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="experiments.html">Experiments</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+
+        <!-- Hamburger Menu for Mobile -->
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul class="mobile-menu" id="mobileMenu">
+            <li><a href="work.html">Work</a></li>
+            <li><a href="experiments.html">Experiments</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- PROJECT CONTENT -->
+    <div class="project-container">
+        <h1 class="project-title">Tapestry</h1>
+        <p class="project-description">Project description coming soon...</p>
+        
+        <!-- Project images will go here -->
+        <img src="assets/stylespan/SS Intro.png" alt="Tapestry Project" class="project-image">
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.getElementById("mobileMenu");
+            mobileMenu.classList.toggle("active");
+        }
+    </script>
+</body>
+</html> 

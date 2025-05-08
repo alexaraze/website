@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA_IRL - Alexa Chomat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            max-width: 1200px;
+            margin: 140px auto 60px;
+            padding: 0 60px;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .hero-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-top: 28px;
+        }
+
+        .hero-title {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .hero-description {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: black;
+        }
+
+        /* Photo Grid */
+        .photo-grid-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 60px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .grid-item {
+            position: relative;
+        }
+
+        .grid-item img, 
+        .grid-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 28px;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 16px;
+            color: black;
+            text-decoration: none;
+            width: fit-content; /* Limit width to content */
+        }
+
+        .back-button-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            color: #52f625;
+        }
+
+        .back-arrow {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+        }
+
+        .back-arrow svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                margin-top: 100px;
+                padding: 0 20px;
+                gap: 30px;
+            }
+
+            .hero-image {
+                max-width: 100%;
+            }
+
+            .photo-grid-container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Action link styling */
+        .action-link {
+            display: inline-block;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 18px;
+            color: black;
+            text-decoration: none;
+            margin-top: 20px;
+            padding: 0 0 1px 0;
+            background-color: transparent;
+            border-bottom: 1px solid black;
+            transition: all 0.15s ease;
+        }
+        
+        .action-link:hover {
+            color: #52f625;
+            border-bottom-color: #52f625;
+        }
+        
+        .action-link .arrow {
+            display: inline-block;
+            margin-left: 4px;
+            color: black;
+            font-size: 16px;
+            transition: all 0.15s ease;
+        }
+        
+        .action-link:hover .arrow {
+            color: #52f625;
+            transform: translateX(3px);
+        }
+
+        /* Project tags styling */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-tags span {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            background-color: black;
+            color: white;
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        /* Add CSS for the grid video */
+        .grid-video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Add CSS for 1:1 ratio images */
+        .grid-item img[src*="Exhibit"] {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Specific rule for Exhibit 3 */
+        .grid-item img[src*="Exhibit 3"] {
+            object-position: right top;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded via JavaScript -->
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-image">
+            <div class="back-button-container">
+                <a href="work.html?scroll=experiments" class="back-button">
+                    <span class="back-arrow">
+                        <svg viewBox="0 0 12 12">
+                            <path d="M8 2L4 6L8 10" />
+                        </svg>
+                    </span>
+                    <span>Experiments</span>
+                </a>
+            </div>
+            <img src="assets/CAPTCHA_IRL/CAPTCHA_IRL.jpeg" alt="CAPTCHA_IRL Project">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">CAPTCHA_IRL</h1>
+            <div class="project-tags">
+                <span>&nbsp;Art Installation&nbsp;</span>
+                <span>&nbsp;Electronics&nbsp;</span>
+                <span>&nbsp;Internet of Things&nbsp;</span>
+            </div>
+            <div class="hero-description">
+                <p>An interactive art installation that reimagines the CAPTCHA test as a physical, human-verification ritual. Presented at the Fabricated Reality exhibition at the University of Pennsylvania.</p>
+                <p>Participants respond to open-ended prompts by touching one of nine abstract bouba/kiki shapes—ambiguous forms open to interpretation. Each interaction triggers LED feedback and logs a response via IFTTT, revealing new prompts and updating real-time survey data. Built with Arduino, capacitive sensors, Neopixels, and IoT integrations, the system gathers these abstract selections into a pattern—creating a collective visualization of human intuition.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Grid -->
+    <div class="photo-grid-container">
+        <div class="photo-grid">
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/IPD 5290 - Fabricated Reality Concept 3.png" alt="Fabricated Reality Concept">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/IPD 5290 - Fabricated Reality Concept 2.png" alt="Fabricated Reality Concept 2">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Circuit.png" alt="CAPTCHA Circuit">
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/CAPTCHA_IRL/CAPTCHA Childhood.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/CAPTCHA_IRL/CAPTCHA Uncertainty.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/CAPTCHA_IRL/CAPTCHA You.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Shapes 1.jpeg" alt="CAPTCHA Shapes 1">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Shapes 2.jpeg" alt="CAPTCHA Shapes 2">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Shapes 3.jpeg" alt="CAPTCHA Shapes 3">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Board 1.jpeg" alt="CAPTCHA Board 1">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Board 2.jpeg" alt="CAPTCHA Board 2">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Board 3.jpeg" alt="CAPTCHA Board 3">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Exhibit 1.png" alt="CAPTCHA Exhibit 1">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Exhibit 2.png" alt="CAPTCHA Exhibit 2">
+            </div>
+            <div class="grid-item">
+                <img src="assets/CAPTCHA_IRL/CAPTCHA Exhibit 3.png" alt="CAPTCHA Exhibit 3">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to load navigation
+        function loadNav() {
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('afterbegin', data);
+                    
+                    // Set up the hamburger menu functionality after nav is loaded
+                    const hamburger = document.querySelector('.hamburger');
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    
+                    if (hamburger && mobileMenu) {
+                        // Remove the inline onclick attribute
+                        hamburger.removeAttribute('onclick');
+                        
+                        // Add a new click event listener
+                        hamburger.addEventListener('click', function(e) {
+                            e.stopPropagation(); // Prevent document click from immediately closing
+                            mobileMenu.classList.toggle('active');
+                        });
+                        
+                        // Add click event to document to close menu when clicking outside
+                        document.addEventListener('click', function(e) {
+                            if (mobileMenu.classList.contains('active') && 
+                                !mobileMenu.contains(e.target) && 
+                                e.target !== hamburger) {
+                                mobileMenu.classList.remove('active');
+                            }
+                        });
+                        
+                        // Add click events to menu items to close menu when clicked
+                        const menuItems = mobileMenu.querySelectorAll('a');
+                        menuItems.forEach(item => {
+                            item.addEventListener('click', function() {
+                                mobileMenu.classList.remove('active');
+                            });
+                        });
+                    }
+                });
+        }
+        
+        // Function to load footer
+        function loadFooter() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('beforeend', data);
+                });
+        }
+        
+        // Load components when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNav();
+            loadFooter();
+        });
+    </script>
+</body>
+</html> 

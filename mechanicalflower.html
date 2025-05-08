@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Flower - Alexa Chomat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            max-width: 1200px;
+            margin: 140px auto 60px;
+            padding: 0 60px;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .hero-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-top: 28px;
+        }
+
+        .hero-title {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .hero-description {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: black;
+        }
+
+        /* Photo Grid */
+        .photo-grid-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 60px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .grid-item {
+            position: relative;
+        }
+
+        .grid-item img, 
+        .grid-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 16/9; /* Standard video aspect ratio for all items */
+            object-fit: cover;
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 28px;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 16px;
+            color: black;
+            text-decoration: none;
+            width: fit-content; /* Limit width to content */
+        }
+
+        .back-button-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            color: #52f625;
+        }
+
+        .back-arrow {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+        }
+
+        .back-arrow svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                margin-top: 100px;
+                padding: 0 20px;
+                gap: 30px;
+            }
+
+            .hero-image {
+                max-width: 100%;
+            }
+
+            .photo-grid-container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Action link styling */
+        .action-link {
+            display: inline-block;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 18px;
+            color: black;
+            text-decoration: none;
+            margin-top: 20px;
+            padding: 0 0 1px 0;
+            background-color: transparent;
+            border-bottom: 1px solid black;
+            transition: all 0.15s ease;
+        }
+        
+        .action-link:hover {
+            color: #52f625;
+            border-bottom-color: #52f625;
+        }
+        
+        .action-link .arrow {
+            display: inline-block;
+            margin-left: 4px;
+            color: black;
+            font-size: 16px;
+            transition: all 0.15s ease;
+        }
+        
+        .action-link:hover .arrow {
+            color: #52f625;
+            transform: translateX(3px);
+        }
+
+        /* Project tags styling */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-tags span {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            background-color: black;
+            color: white;
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        /* Add styling for grid videos */
+        .grid-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 16/9; /* Standard video aspect ratio */
+            object-fit: cover;
+        }
+
+        /* Add special styling for the last video to show more of the top */
+        .photo-grid .grid-item:last-child video {
+            object-position: center 43%; /* Shift focus slightly toward the top (40% from the top) */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded via JavaScript -->
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-image">
+            <div class="back-button-container">
+                <a href="work.html?scroll=experiments" class="back-button">
+                    <span class="back-arrow">
+                        <svg viewBox="0 0 12 12">
+                            <path d="M8 2L4 6L8 10" />
+                        </svg>
+                    </span>
+                    <span>Experiments</span>
+                </a>
+            </div>
+            <img src="assets/mechanical flower/Mechanical Flower.gif" alt="Mechanical Flower Animation">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Mechanical Flower</h1>
+            <div class="project-tags">
+                <span>&nbsp;Gen AI&nbsp;</span>
+                <span>&nbsp;Stable DIffusion&nbsp;</span>
+                <span>&nbsp;Projection Mapping&nbsp;</span>
+            </div>
+            <div class="hero-description">
+                <p>Projection mapping installation exploring the inevitablity of technological determinism. Created under the guidance of Krzysztof Wodiczko.</p>
+                <p>I trained a stable diffusion AI model on a dataset of dystopian tech media (Marshall McLuhan on the global village, Black Mirror episodes, Charlie Chaplin lost in industrial machinery, etc.), and then force-fed the model prompts that dreamt of utopia—an attempt to cleanse tainted imagery through the very medium that created it. 
+                Projected on the Annenberg building at the University of Pennsylvania.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Grid -->
+    <div class="photo-grid-container">
+        <div class="photo-grid">
+            <div class="grid-item">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/mechanical flower/Mechanical Flower - Originals.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/mechanical flower/Mechanical Flower - Prompts.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/mechanical flower/Mechanical Flower - AI.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="grid-item">
+                <img src="assets/mechanical flower/MF1.jpeg" alt="Mechanical Flower Detail 1">
+            </div>
+            <div class="grid-item">
+                <img src="assets/mechanical flower/MF2.jpeg" alt="Mechanical Flower Detail 2">
+            </div>
+            <div class="grid-item">
+                <video autoplay loop muted playsinline>
+                    <source src="assets/mechanical flower/MF3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to load navigation
+        function loadNav() {
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('afterbegin', data);
+                    
+                    // Set up the hamburger menu functionality after nav is loaded
+                    const hamburger = document.querySelector('.hamburger');
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    
+                    if (hamburger && mobileMenu) {
+                        // Remove the inline onclick attribute
+                        hamburger.removeAttribute('onclick');
+                        
+                        // Add a new click event listener
+                        hamburger.addEventListener('click', function(e) {
+                            e.stopPropagation(); // Prevent document click from immediately closing
+                            mobileMenu.classList.toggle('active');
+                        });
+                        
+                        // Add click event to document to close menu when clicking outside
+                        document.addEventListener('click', function(e) {
+                            if (mobileMenu.classList.contains('active') && 
+                                !mobileMenu.contains(e.target) && 
+                                e.target !== hamburger) {
+                                mobileMenu.classList.remove('active');
+                            }
+                        });
+                        
+                        // Add click events to menu items to close menu when clicked
+                        const menuItems = mobileMenu.querySelectorAll('a');
+                        menuItems.forEach(item => {
+                            item.addEventListener('click', function() {
+                                mobileMenu.classList.remove('active');
+                            });
+                        });
+                    }
+                });
+        }
+        
+        // Function to load footer
+        function loadFooter() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('beforeend', data);
+                });
+        }
+        
+        // Load components when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNav();
+            loadFooter();
+            const gridVideos = document.querySelectorAll('.grid-item video');
+            gridVideos.forEach(video => {
+                video.addEventListener('loadedmetadata', function() {
+                    // Set playback rate to 0.75x speed
+                    video.playbackRate = 0.75;
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

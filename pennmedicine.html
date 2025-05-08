@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penn Medicine - Alexa Chomat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Back Button and Title styles */
+        .back-button-container {
+            max-width: 1200px;
+            margin: 140px auto 0;
+            padding: 0 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .project-title {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 32px;
+            color: black;
+            margin: 15px 0 0 0;
+        }
+
+        .image-container {
+            width: 100%;
+            margin: 20px 0 40px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+            margin-bottom: 0;
+            padding: 0 60px;
+        }
+
+        .project-tags span {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            color: white;
+            background-color: black;
+            padding: 2px 10px;
+            border-radius: 2px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: black;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 16px;
+            padding: 0;
+            width: auto;
+        }
+
+        .back-arrow {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .back-arrow svg {
+            width: 100%;
+            height: 100%;
+            stroke: black;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .back-button span:last-child {
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            color: #52f625;
+            text-decoration: underline;
+        }
+
+        .back-button:hover .back-arrow svg {
+            stroke: #52f625;
+        }
+
+        /* Project Info Grid styles */
+        .project-info-grid {
+            max-width: 1200px;
+            margin: 160px auto;
+            padding: 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px 60px;
+            color: black;
+        }
+
+        .project-overview {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 24px;
+            color: black;
+            grid-column: 1;
+            grid-row: 1;
+            align-self: start;
+            padding-right: 20px;
+        }
+
+        .info-items-container {
+            grid-column: 2;
+            grid-row: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 20px;
+        }
+
+        .context-grid {
+            max-width: 1200px;
+            margin: 160px auto;
+            padding: 0 60px;
+            display: flex;
+            gap: 40px;
+            color: black;
+        }
+
+        .context-grid + .context-grid {
+            margin-top: 0;
+        }
+
+        .context-grid + .context-grid + .context-grid {
+            margin-top: 160px;
+        }
+
+        .project-context {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 24px;
+            color: black;
+            flex: 1;
+            padding-right: 20px;
+            margin: 0;
+            line-height: 1;
+            margin-top: 0.5em;
+            text-decoration: none;
+        }
+
+        .context-body {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: black;
+            flex: 2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .info-item h3 {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            margin-bottom: 4px;
+            font-weight: 300;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .info-item p {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: black;
+        }
+
+        .context-body a {
+            color: black;
+            text-decoration: underline;
+            transition: color 0.15s ease;
+        }
+
+        .context-body a:hover {
+            color: #52f625;
+        }
+
+        /* Mobile adjustment */
+        @media (max-width: 768px) {
+            .back-button-container {
+                margin: 100px auto 0;
+                padding: 0 20px;
+            }
+
+            .image-container {
+                height: auto;
+                overflow: visible;
+            }
+
+            .project-image {
+                height: auto;
+                object-fit: contain;
+            }
+
+            .project-tags {
+                padding: 0 20px;
+            }
+
+            .project-info-grid, .context-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+            }
+
+            .project-overview, .project-context {
+                grid-column: 1;
+                grid-row: auto;
+                padding-right: 0;
+                margin-bottom: 0;
+            }
+
+            .context-body {
+                grid-column: 1;
+                grid-row: auto;
+                margin-bottom: 0;
+            }
+
+            .info-items-container {
+                grid-column: 1;
+                grid-row: auto;
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .context-grid {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .project-context, .context-body {
+                flex: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Button and Title -->
+    <div class="back-button-container">
+        <a href="work.html" class="back-button">
+            <span class="back-arrow">
+                <svg viewBox="0 0 12 12">
+                    <path d="M8 2L4 6L8 10" />
+                </svg>
+            </span>
+            <span>Work</span>
+        </a>
+        <h1 class="project-title">Penn Medicine</h1>
+    </div>
+
+    <!-- Project Image -->
+    <div class="project-info-grid" style="margin-top: -10px;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Render 3.jpeg" alt="Penn Medicine Intro Image" style="width: 100%; display: block; box-shadow: none;">
+            <div class="project-tags" style="padding: 0;">
+                <span>&nbsp;Physical Prototyping&nbsp;</span>
+                <span>&nbsp;Electronics&nbsp;</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Info Grid -->
+    <div class="project-info-grid">
+        <div class="project-overview">
+            Project Overview
+        </div>
+        <div class="info-items-container">
+            <div class="info-item">
+                <h3>Company</h3>
+                <p>University of Pennsylvania</p>
+            </div>
+            <div class="info-item">
+                <h3>Role</h3>
+                <p>Product Lead</p>
+            </div>
+            <div class="info-item">
+                <h3>Duration</h3>
+                <p>1 year</p>
+            </div>
+            <div class="info-item">
+                <h3>Team</h3>
+                <p>Business development lead, mechanical engineer, two industrial designers, medical advisor</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- First Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Context</h2>
+        <div class="context-body">
+            <p>During my Master's at the University of Pennsylvania, my team was approached by Penn Medicine to help address a rising safety concern flagged by their internal risk team—tourniquets were being forgotten on patient limbs during surgery, causing patient harm and liability risks for the hospital.</p>
+            <p>In collaboration with Penn Medicine and Wharton's incubator program, I spent over a year working alongside clinicians, hospital leadership, and venture advisors to produce a solution.</p>
+            <p>As Product Lead, I led a team of industrial designers and mechanical engineers to develop a functional prototype that would guarantee patient safety—without adding unnecessary steps or pressure to clinical workflows.</p>
+        </div>
+    </div>
+
+    <!-- Timeline Image -->
+    <div class="project-info-grid" style="margin-top: 0;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - Timeline.png" alt="Penn Medicine Timeline" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+
+    <!-- Title and Image Section -->
+    <div class="context-grid" style="margin-bottom: 0;">
+        <h2 class="project-context">Problem</h2>
+    </div>
+    <div class="project-info-grid" style="margin-top: 0;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - Problem 1.png" alt="Penn Medicine Problem" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+    <div class="project-info-grid" style="margin-top: 20px;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - Problem 2.png" alt="Penn Medicine Problem" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+
+    <!-- Second Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Research</h2>
+        <div class="context-body">
+            <p>We started our project by pulling on scrubs and stepping into the OR environment. Over the course of the engagement, we conducted in-depth primary research with 37 clinicians—including medical students, attending surgeons, nurses, and anesthesiologists. This included a mix of interviews, full-day shadowing, and direct observation of surgical procedures.</p>
+
+            <p>By immersing ourselves in their everyday routines, we were able to observe user behaviours and pinpoint exactly when and why tourniquet errors may occur. From those insights, we identified three key opportunity areas for intervention.</p>
+        </div>
+    </div>
+
+    <!-- Research Images -->
+    <div class="project-info-grid" style="margin-top: 0;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - Research Photos.png" alt="Research Photos" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+    <div class="project-info-grid" style="margin-top: 20px;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - User Quotes.png" alt="User Quotes" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+    <div class="project-info-grid" style="margin-top: 20px;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - OR Map.png" alt="OR Map" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+    <div class="project-info-grid" style="margin-top: 20px;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - Opportunity Areas.png" alt="Opportunity Areas" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+
+    <!-- Third Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Ideation</h2>
+        <div class="context-body">
+            <p>We kicked off with a round of divergent brainstorming, generating 50+ ideas to spark discussion and challenge assumptions. From there, we built quick prototypes using off-the-shelf components and left them with clinicians to test over the course of a week—directly in their hospital environment.</p>
+
+            <p>This rapid feedback loop allowed us to eliminate any concepts that would create barriers to user adoption—whether by adding time, increasing cognitive load, or disrupting workflows. It also led to a key shift in direction: rather than putting the onus on clinicians to prevent accidents, how might we offer them a safeguard for when human error inevitably occurs?</p>
+        </div>
+    </div>
+
+    <!-- Ideation Image -->
+    <div class="project-info-grid" style="margin-top: 0;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - Ideation.png" alt="Ideation Process" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+
+    <!-- Fourth Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Prototyping</h2>
+        <div class="context-body">
+            <p>With the goal of creating an auto-release tourniquet device, we began exploring how the concept could work in practice—focusing on core user interactions and technical engineering.</p>
+
+            <p>Through nine rounds of iteration, we moved from early form factor studies to a fully functional prototype with a reliable mechanical release and embedded electronic components.</p>
+
+            <p>Each version was tested with clinicians at Penn Medicine, enabling us to co-design a solution that meets their needs and integrates into existing workflows.</p>
+        </div>
+    </div>
+
+    <!-- Prototyping Image -->
+    <div class="project-info-grid" style="margin-top: 0;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Penn Med - Prototyping.png" alt="Prototyping Process" style="width: 100%; display: block; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);">
+        </div>
+    </div>
+
+    <!-- Fifth Context Section -->
+    <div class="context-grid">
+        <h2 class="project-context">Product</h2>
+        <div class="context-body">
+            <p>We created a device that transforms how tourniquets are applied. After 10 minutes, the device automatically releases the tourniquet from patient limbs, adding a critical layer of safety without requiring any additional steps or attention.</p>
+
+            <p>Every aspect of the product was designed for easy adoption—intuitive for clinicians, comfortable for patients, and cost-efficient to produce—with a projected 81% profit margin and $400K in annual savings per hospital. It's a solution that works with the system, not against it.</p>
+
+            <p>With support from Wharton's Venture Lab incubator, we grew the project into a venture and secured a provisional utility patent for the invention. We've since handed off the final prototype to Penn Medicine, who are now preparing it for clinical trials.</p>
+        </div>
+    </div>
+
+    <!-- Product Images -->
+    <div class="project-info-grid" style="margin-top: 0;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Render 3.jpeg" alt="Penn Medicine Product Render" style="width: 100%; display: block; box-shadow: none;">
+        </div>
+    </div>
+    <div class="project-info-grid" style="margin-top: -200px;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Render 2.jpeg" alt="Penn Medicine Product Render" style="width: 100%; display: block; box-shadow: none;">
+        </div>
+    </div>
+    <div class="project-info-grid" style="margin-top: -200px;">
+        <div class="image-container" style="grid-column: 1 / -1;">
+            <img src="assets/penn medicine/Render 1.jpeg" alt="Penn Medicine Product Render" style="width: 100%; display: block; box-shadow: none;">
+        </div>
+    </div>
+
+    <!-- Navigation and Footer placeholders -->
+    <div id="nav-placeholder"></div>
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Function to dynamically load HTML components (nav, footer)
+        function loadComponent(id, file, callback) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(id).innerHTML = data;
+                    if (callback) callback(); // Ensure scripts inside the loaded file work
+                })
+                .catch(error => console.error(`Error loading ${file}:`, error));
+        }
+
+        // Load the navigation and footer when the DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComponent('nav-placeholder', 'nav.html', setupNav);
+            loadComponent('footer-placeholder', 'footer.html');
+        });
+
+        // Setup the mobile menu toggle after nav is loaded
+        function setupNav() {
+            window.toggleMenu = function() {
+                const mobileMenu = document.getElementById("mobileMenu");
+                if (mobileMenu) {
+                    mobileMenu.classList.toggle("active");
+                } else {
+                    console.warn("Mobile menu element not found!");
+                }
+            };
+        }
+    </script>
+</body>
+</html> 

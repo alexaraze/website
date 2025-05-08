@@ -1,0 +1,276 @@
+<!--
+
+██╗  ░██████╗███████╗███████╗  ██╗░░░██╗░█████╗░██╗░░░██╗░░░
+██║  ██╔════╝██╔════╝██╔════╝  ╚██╗░██╔╝██╔══██╗██║░░░██║░░░
+██║  ╚█████╗░█████╗░░█████╗░░  ░╚████╔╝░██║░░██║██║░░░██║░░░
+██║  ░╚═══██╗██╔══╝░░██╔══╝░░  ░░╚██╔╝░░██║░░██║██║░░░██║░░░
+██║  ██████╔╝███████╗███████╗  ░░░██║░░░╚█████╔╝╚██████╔╝██╗
+╚═╝  ╚═════╝░╚══════╝╚══════╝  ░░░╚═╝░░░░╚════╝░░╚═════╝░╚═╝
+
+                 $                                            ]                 
+          p      [       #                             b      ]       {         
+  ]       @      [      ]       #                      j      ]      .`      /  
+   ^p     ,b=~""^""""*=,b      "                 w     ,b=*""^^^""*=-Q      f   
+     \,"`   ,,smmmmmw,,   `*w;`                   \,*`   ,,smmmmmw,,   '"w,"    
+   :"  ,#"^`  #b` ^@N  '"%m,  "                 ."  ,sW"`  #M` '%#   "%W,  `~   
+    ,#^      #`     @N      "W                   ,#"      #b     1#      "@,    
+  ;M        @#       #                         ,#^       ]#       #p            
+  ^W        @#7777777#b                         @,       @#7777777#b            
+    ^%w     ]#      ]#     ,#b                    %w     j#       #~     s"     
+       "%m,  @b     #b ,sM"                         `"W,  @#     #N ,sM"`       
+            ^""*"""T""                                   ^""""""""7`            
+
+█▀▄ █▀█   █▄█ █▀█ █░█   █▀ █▀▀ █▀▀   █▀▄▀█ █▀▀ ▀█
+█▄▀ █▄█   ░█░ █▄█ █▄█   ▄█ ██▄ ██▄   █░▀░█ ██▄ ░▄
+
+You found my secret message!
+
+As a designer with a curiosity for code, I developed this website as an experiment to test out coding with Cursor AI.
+It's not perfect. Many headaches were had. And it turns out that AI prefers to push code that bulldozes, rather than respects the balance of things. Not the most elegant.
+But feel free to poke around. And if this sparks any thoughts or questions for you, I welcome you to reach out.
+
+Alexa.
+-->
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Alexa Chomat</title>
+    <!-- Add Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: black;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .tagline {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 32px;
+            color: white;
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 30vh auto;
+            padding: 0 60px;
+            line-height: 1.2;
+        }
+
+        .intro-text {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: black;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+        }
+
+        .intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .tagline {
+                font-size: 24px;
+                padding: 0 20px;
+                line-height: 1.3;
+            }
+
+            .intro-text {
+                padding: 0 20px;
+            }
+        }
+
+    </style>
+</head>
+    
+<body>
+    <canvas id="background-canvas"></canvas>
+
+    <div class="tagline">
+        Merging design and emerging technology to bring meaningful ideas to life.
+    </div>
+
+    <!-- Add this JavaScript at the bottom of your body tag -->
+    <script>
+
+        // Interactive background setup
+        const canvas = document.getElementById('background-canvas');
+        const renderer = new THREE.WebGLRenderer({ 
+            canvas, 
+            antialias: true,
+            alpha: false // Changed to false for solid background
+        });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 1);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        // Increase particle count and size
+        const particlesCount = 10000;
+        const particlesGeometry = new THREE.BufferGeometry();
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 20; // Increased spread
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        // Update the particle material settings
+        const material = new THREE.PointsMaterial({
+            size: 0.02, // Increased size
+            color: 0x00ff00,
+            transparent: true,
+            opacity: 1.0, // Full opacity
+            sizeAttenuation: true
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, material);
+        scene.add(particlesMesh);
+
+        camera.position.z = 5;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            particlesMesh.rotation.y += 0.001;
+            particlesMesh.rotation.x += 0.001;
+            
+            renderer.render(scene, camera);
+        }
+
+        // Handle window resize
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        window.addEventListener('resize', onWindowResize);
+        onWindowResize();
+        animate();
+
+        // Function to load navigation with dark theme
+        function loadNav() {
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('afterbegin', data);
+                    
+                    // Set up the hamburger menu functionality after nav is loaded
+                    const hamburger = document.querySelector('.hamburger');
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    
+                    if (hamburger && mobileMenu) {
+                        // Remove the inline onclick attribute
+                        hamburger.removeAttribute('onclick');
+                        
+                        // Add a new click event listener
+                        hamburger.addEventListener('click', function(e) {
+                            e.stopPropagation(); // Prevent document click from immediately closing
+                            mobileMenu.classList.toggle('active');
+                        });
+                        
+                        // Update the click event handler to close menu when clicking anywhere
+                        document.addEventListener('click', function(e) {
+                            const mobileMenu = document.getElementById('mobileMenu');
+                            const hamburger = document.querySelector('.hamburger');
+                            
+                            // If the menu is active and the click is not on the menu or hamburger
+                            if (mobileMenu && mobileMenu.classList.contains('active') && 
+                                !mobileMenu.contains(e.target) && 
+                                e.target !== hamburger && 
+                                !hamburger.contains(e.target)) {
+                                mobileMenu.classList.remove('active');
+                            }
+                        });
+                        
+                        // Add click events to menu items to close menu when clicked
+                        const menuItems = mobileMenu.querySelectorAll('a');
+                        menuItems.forEach(item => {
+                            item.addEventListener('click', function() {
+                                mobileMenu.classList.remove('active');
+                            });
+                        });
+                    }
+                    
+                    // Apply dark theme to navigation
+                    const nav = document.getElementById('mainNav');
+                    if (nav) {
+                        nav.classList.add('nav-dark');
+                        
+                        // Change logo to white version
+                        const logo = document.getElementById('navLogo');
+                        if (logo) {
+                            logo.src = 'assets/ac_monogram.png';
+                        }
+                    }
+                });
+        }
+        
+        // Function to load footer with dark theme
+        function loadFooter() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('beforeend', data);
+                    
+                    // Apply dark theme to footer
+                    const footer = document.querySelector('.footer');
+                    if (footer) {
+                        footer.classList.add('footer-dark');
+                    }
+                });
+        }
+        
+        // Load navigation and footer when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNav();
+            loadFooter();
+        });
+
+        // Improve the click event handler to work consistently
+        window.addEventListener('DOMContentLoaded', function() {
+            // Add a global document click handler after navigation is loaded
+            setTimeout(function() {
+                document.addEventListener('click', function(e) {
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    const hamburger = document.querySelector('.hamburger');
+                    
+                    if (mobileMenu && hamburger) {
+                        // If the menu is active and the click is not on the menu or hamburger
+                        if (mobileMenu.classList.contains('active') && 
+                            !mobileMenu.contains(e.target) && 
+                            e.target !== hamburger && 
+                            !hamburger.contains(e.target)) {
+                            mobileMenu.classList.remove('active');
+                        }
+                    }
+                }, true); // Use capture phase to ensure this runs before other handlers
+            }, 1000); // Delay to ensure navigation is fully loaded
+        });
+    </script>
+</body>
+</html>

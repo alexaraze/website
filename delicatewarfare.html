@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicate Warfare - Alexa Chomat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'impact-label-reversed', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: black;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            max-width: 1200px;
+            margin: 140px auto 60px;
+            padding: 0 60px;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .hero-image {
+            flex: 1.3;
+            max-width: 58%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-content {
+            flex: 0.7;
+            padding-top: 28px;
+        }
+
+        .hero-title {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .hero-description {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: black;
+        }
+
+        /* Photo Grid */
+        .photo-grid-container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 60px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .grid-item {
+            position: relative;
+        }
+
+        .grid-item img {
+            width: 100%;
+            aspect-ratio: 1/1; /* Creates a square aspect ratio */
+            object-fit: cover; /* Ensures the image fills the square */
+            object-position: center; /* Centers the image content */
+            display: block;
+        }
+
+        .grid-caption {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        .grid-item.caption-only {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+            min-height: 200px;
+        }
+
+        .caption-text {
+            font-family: Gotham, 'Gotham SSm A', 'Gotham SSm B', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: center;
+            font-style: italic;
+            color: #333;
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 28px;
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 16px;
+            color: black;
+            text-decoration: none;
+            width: fit-content; /* Limit width to content */
+        }
+
+        .back-button-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            color: #52f625;
+        }
+
+        .back-arrow {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+        }
+
+        .back-arrow svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                margin-top: 100px;
+                padding: 0 20px;
+                gap: 30px;
+            }
+
+            .hero-image {
+                max-width: 100%;
+            }
+
+            .photo-grid-container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Project tags styling */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-tags span {
+            font-family: 'impact-label-reversed', sans-serif;
+            font-size: 14px;
+            background-color: black;
+            color: white;
+            display: inline-block;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+
+        /* Update styling for the hero video to make it wider */
+        .hero-video {
+            width: 100%;
+            aspect-ratio: 7/8; /* Creates an even wider portrait aspect ratio (7:8) */
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            max-height: 600px; /* Maintain the increased height */
+            margin: 0 auto;
+        }
+
+        /* Special styling for DW1 to crop from the right */
+        .grid-item:first-child img {
+            object-position: right center; /* Crop from the right */
+        }
+
+        /* Special styling for DW14 to crop from the top */
+        .grid-item:last-child img {
+            object-position: top center; /* Crop from the top */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation will be loaded via JavaScript -->
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-image">
+            <a href="work.html?scroll=experiments" class="back-button">
+                <div class="back-button-content">
+                    <span class="back-arrow">
+                        <svg viewBox="0 0 12 12">
+                            <path d="M8 2L4 6L8 10" />
+                        </svg>
+                    </span>
+                    <span>Experiments</span>
+                </div>
+            </a>
+            <video autoplay loop muted playsinline class="hero-video">
+                <source src="assets/delicate warfare/Holographic Render.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Delicate Warfare</h1>
+            <div class="project-tags">
+                <span>&nbsp;CAD&nbsp;</span>
+                <span>&nbsp;3D Printing&nbsp;</span>
+            </div>
+            <div class="hero-description">
+                <p>A 3D-printed wearable inspired by biomimicry and costume design from iconic sci-fi films.</p>
+                <p>Combining 3D photogrammetry, Rhino modelling, and fabrication, I designed and built a spiked breastplate composed of six interlocking 3D-printed parts. Drawing inspiration from sea urchins, the piece is both aggression and adornment—its rigid, spiked exterior acts as a threatening armour, while the smooth interior surface caresses every curve of the body—an exploration of the delicate balance between masculinity and femininity; violence and beauty.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Grid with all 14 images using correct naming convention -->
+    <div class="photo-grid-container">
+        <div class="photo-grid">
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW1.png" alt="Delicate Warfare Detail 1">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW2.png" alt="Delicate Warfare Detail 2">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW3.png" alt="Delicate Warfare Detail 3">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW4.png" alt="Delicate Warfare Detail 4">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW5.png" alt="Delicate Warfare Detail 5">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW6.png" alt="Delicate Warfare Detail 6">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW7.jpeg" alt="Delicate Warfare Detail 7">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW8.jpeg" alt="Delicate Warfare Detail 8">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW9.jpeg" alt="Delicate Warfare Detail 9">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW10.jpeg" alt="Delicate Warfare Detail 10">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW11.jpeg" alt="Delicate Warfare Detail 11">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW12.jpeg" alt="Delicate Warfare Detail 12">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW13.jpeg" alt="Delicate Warfare Detail 13">
+            </div>
+            <div class="grid-item">
+                <img src="assets/delicate warfare/DW14.jpeg" alt="Delicate Warfare Detail 14">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to load navigation
+        function loadNav() {
+            fetch('nav.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('afterbegin', data);
+                    
+                    // Set up the hamburger menu functionality after nav is loaded
+                    const hamburger = document.querySelector('.hamburger');
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    
+                    if (hamburger && mobileMenu) {
+                        // Remove the inline onclick attribute
+                        hamburger.removeAttribute('onclick');
+                        
+                        // Add a new click event listener
+                        hamburger.addEventListener('click', function(e) {
+                            e.stopPropagation(); // Prevent document click from immediately closing
+                            mobileMenu.classList.toggle('active');
+                        });
+                        
+                        // Add click event to document to close menu when clicking outside
+                        document.addEventListener('click', function(e) {
+                            if (mobileMenu.classList.contains('active') && 
+                                !mobileMenu.contains(e.target) && 
+                                e.target !== hamburger) {
+                                mobileMenu.classList.remove('active');
+                            }
+                        });
+                        
+                        // Add click events to menu items to close menu when clicked
+                        const menuItems = mobileMenu.querySelectorAll('a');
+                        menuItems.forEach(item => {
+                            item.addEventListener('click', function() {
+                                mobileMenu.classList.remove('active');
+                            });
+                        });
+                    }
+                });
+        }
+        
+        // Function to load footer
+        function loadFooter() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.body.insertAdjacentHTML('beforeend', data);
+                });
+        }
+        
+        // Load components when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNav();
+            loadFooter();
+            const heroVideo = document.querySelector('.hero-video');
+            if (heroVideo) {
+                // Set the video to start from the middle once metadata is loaded
+                heroVideo.addEventListener('loadedmetadata', function() {
+                    // Set current time to the middle of the video
+                    heroVideo.currentTime = heroVideo.duration / 2;
+                    
+                    // Set playback rate to 0.5x speed (half speed)
+                    heroVideo.playbackRate = 0.75;
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
