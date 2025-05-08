@@ -6,11 +6,11 @@ body {
 /* TEXT */
 @font-face {
     font-family: 'impact-label';
-    src: url('Fonts/Impact Label.ttf') format('truetype');
+    src: url('fonts/Impact Label.ttf') format('truetype');
 }
 @font-face {
     font-family: 'impact-label-reversed';
-    src: url('Fonts/Impact Label Reversed.ttf') format('truetype');
+    src: url('fonts/Impact Label Reversed.ttf') format('truetype');
 }
 h1{
     font-family: 'impact-label-reversed', sans-serif;
